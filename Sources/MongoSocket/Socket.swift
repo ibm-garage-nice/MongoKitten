@@ -221,7 +221,7 @@ public final class MongoSocket: MongoTCP {
                 }
 
                 self.sslContext = .make(optional: ctx)
-                self.sslMethod = .make(optional: method)
+                self.sslMethod = .make(optional: UnsafeMutablePointer.init(mutating: method))
 
                 SSL_CTX_ctrl(ctx, SSL_CTRL_MODE, numericCast(SSL_MODE_AUTO_RETRY), nil)
 
